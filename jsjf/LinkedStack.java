@@ -10,7 +10,7 @@ import java.util.LinkedList;
  */
 public class LinkedStack<T> implements StackADT<T> {
 
-  LinkedList<T> stack;
+  private LinkedList<T> stack;
 
   /**
    * Creates an empty stack.

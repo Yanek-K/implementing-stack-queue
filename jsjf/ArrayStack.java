@@ -10,7 +10,7 @@ import java.util.ArrayList;
  */
 public class ArrayStack<T> implements StackADT<T> {
 
-  ArrayList<T> stack;
+  private ArrayList<T> stack;
 
   /**
    * Creates an empty stack.

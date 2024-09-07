@@ -5,7 +5,6 @@ public class Driver {
     // Test ArrayStack
     System.out.println("Testing ArrayStack:");
     StackADT<Integer> arrayStack = new ArrayStack<>();
-
     testStack(arrayStack);
 
     // Test LinkedStack
@@ -34,9 +33,11 @@ public class Driver {
     queue.enqueue(10);
     queue.enqueue(20);
     queue.enqueue(30);
+    queue.enqueue(40); // Add more elements to test robustness
+    queue.enqueue(50);
 
     // Print the size of the queue
-    System.out.println("Queue size after enqueuing 3 elements: " + queue.size());
+    System.out.println("Queue size after enqueuing 5 elements: " + queue.size());
 
     // Peek at the front element
     System.out.println("Peek at the front element: " + queue.peek());
@@ -52,7 +53,9 @@ public class Driver {
     // Peek at the front element again
     System.out.println("Peek at the front element: " + queue.peek());
 
-    // Dequeue the last element
+    // Dequeue all elements until empty
+    System.out.println("Dequeued: " + queue.dequeue());
+    System.out.println("Dequeued: " + queue.dequeue());
     System.out.println("Dequeued: " + queue.dequeue());
 
     // Check if the queue is empty
@@ -65,6 +68,13 @@ public class Driver {
     } catch (EmptyCollectionException e) {
       System.out.println("Caught exception: " + e.getMessage());
     }
+
+    // Re-enqueue to test enqueue after the queue is empty
+    System.out.println("Re-enqueueing after emptying the queue:");
+    queue.enqueue(60);
+    queue.enqueue(70);
+    System.out.println("Queue size after re-enqueueing: " + queue.size());
+    System.out.println("Peek at the front element: " + queue.peek());
   }
 
   // Generic method to test any stack implementation
@@ -77,9 +87,11 @@ public class Driver {
     stack.push(10);
     stack.push(20);
     stack.push(30);
+    stack.push(40); // Add more elements to test robustness
+    stack.push(50);
 
     // Print the stack size
-    System.out.println("Stack size: " + stack.size());
+    System.out.println("Stack size after pushing 5 elements: " + stack.size());
 
     // Peek at the top element
     System.out.println("Peek at the top element: " + stack.peek());
@@ -90,24 +102,32 @@ public class Driver {
     System.out.println("Popped: " + stack.pop());
 
     // Check stack size after popping
-    System.out.println("Stack size after popping: " + stack.size());
+    System.out.println("Stack size after popping 2 elements: " + stack.size());
 
     // Peek again
     System.out.println("Peek at the top element: " + stack.peek());
 
-    // Pop the last element
+    // Pop all elements until empty
+    System.out.println("Popped: " + stack.pop());
+    System.out.println("Popped: " + stack.pop());
     System.out.println("Popped: " + stack.pop());
 
     // Check if stack is empty after all pops
     System.out.println("Is the stack empty? " + stack.isEmpty());
 
-    // Try to pop from the empty stack
+    // Try to pop from the empty stack (should throw an exception)
     try {
       System.out.println("Trying to pop from an empty stack...");
       stack.pop(); // This should throw an exception
     } catch (EmptyCollectionException e) {
       System.out.println("Caught exception: " + e.getMessage());
     }
-  }
 
+    // Push again after emptying the stack to test reuse
+    System.out.println("Pushing elements again after emptying the stack:");
+    stack.push(60);
+    stack.push(70);
+    System.out.println("Stack size after re-pushing: " + stack.size());
+    System.out.println("Peek at the top element: " + stack.peek());
+  }
 }

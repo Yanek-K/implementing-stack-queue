@@ -10,19 +10,13 @@ import java.util.ArrayList;
  */
 public class ArrayQueue<T> implements QueueADT<T> {
 
-  ArrayList<T> queue;
-  int rear;
-  int front;
-  int count;
+  private ArrayList<T> queue;
 
   /**
    * Creates an empty queue.
    */
   public ArrayQueue() {
     queue = new ArrayList<>();
-    this.front = 0;
-    this.rear = 0;
-    this.count = 0;
   }
 
   /**
@@ -31,15 +25,7 @@ public class ArrayQueue<T> implements QueueADT<T> {
    * @param element the element to be added to the rear of the queue
    */
   public void enqueue(T element) {
-    queue.add(rear, element);
-
-    rear = (rear + 1) % queue.size();
-
-    count++;
-
-    if (count == 1) {
-      front = rear;
-    }
+    queue.add(element);
   }
 
   /**
@@ -53,13 +39,7 @@ public class ArrayQueue<T> implements QueueADT<T> {
       throw new EmptyCollectionException("Queue");
     }
 
-    T result = queue.get(front);
-
-    front = (front + 1) % queue.size();
-
-    count--;
-
-    return result;
+    return queue.remove(0);
   }
 
   /**
@@ -73,7 +53,7 @@ public class ArrayQueue<T> implements QueueADT<T> {
       throw new EmptyCollectionException("Queue");
     }
 
-    return queue.get(front);
+    return queue.get(0);
   }
 
   /**
@@ -82,7 +62,7 @@ public class ArrayQueue<T> implements QueueADT<T> {
    * @return true if this queue is empty
    */
   public boolean isEmpty() {
-    return count == 0;
+    return queue.isEmpty();
   }
 
   /**
@@ -91,7 +71,7 @@ public class ArrayQueue<T> implements QueueADT<T> {
    * @return the integer representation of the size of the queue
    */
   public int size() {
-    return count;
+    return queue.size();
   }
 
   /**
@@ -106,12 +86,8 @@ public class ArrayQueue<T> implements QueueADT<T> {
 
     String result = "[";
 
-    int index = front;
-
-    for (int i = 0; i < count; i++) {
-      result += queue.get(index) + ", ";
-
-      index = (index + 1) % queue.size();
+    for (int i = 0; i < size(); i++) {
+      result += queue.get(i) + ", ";
     }
 
     result = result.substring(0, result.length() - 2);

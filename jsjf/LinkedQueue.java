@@ -10,7 +10,7 @@ import java.util.LinkedList;
  */
 public class LinkedQueue<T> implements QueueADT<T> {
 
-  LinkedList<T> queue;
+  private LinkedList<T> queue;
 
   /**
    * Creates an empty queue.
