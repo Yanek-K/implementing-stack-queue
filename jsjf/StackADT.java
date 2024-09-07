@@ -1,3 +1,5 @@
+package jsjf;
+
 /**
  * Defines the interface to a stack collection.
  *

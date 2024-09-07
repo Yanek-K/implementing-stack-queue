@@ -1,21 +1,22 @@
-import java.util.EmptyStackException;
-import java.util.LinkedList;
+package jsjf;
+
+import java.util.ArrayList;
 
 /**
- * LinkedStack represents a linked implementation of a stack.
+ * ArrayStack represents an arry implementation of a stack.
  * 
  * @author Yanek Keshavjee
  * @version 1.0
  */
-public class LinkedStack<T> implements StackADT<T> {
+public class ArrayStack<T> implements StackADT<T> {
 
-  LinkedList<T> stack;
+  ArrayList<T> stack;
 
   /**
    * Creates an empty stack.
    */
-  public LinkedStack() {
-    stack = new LinkedList<>();
+  public ArrayStack() {
+    stack = new ArrayList<>();
   }
 
   /**
@@ -24,33 +25,33 @@ public class LinkedStack<T> implements StackADT<T> {
    * @param element the element to be added to the list
    */
   public void push(T element) {
-    stack.addFirst(element);
+    stack.add(element);
   }
 
   /**
    * Removes the specified element from the top of the stack
    *
    * @return a reference to the element at the top of the stack
-   * @throws EmptyStackException if the stack is empty
+   * @throws EmptyCollectionException if the stack is empty
    */
-  public T pop() throws EmptyStackException {
+  public T pop() {
     if (isEmpty()) {
-      throw new EmptyStackException();
+      throw new EmptyCollectionException("Stack");
     }
-    return stack.remove();
+    return stack.remove(stack.size() - 1);
   }
 
   /**
    * Returns the element at the top of the stack without removing it.
    *
    * @return the element at the top of the stack
-   * @throws EmptyStackException if the stack is empty
+   * @throws EmptyCollectionException if the stack is empty
    */
-  public T peek() throws EmptyStackException {
+  public T peek() {
     if (isEmpty()) {
-      throw new EmptyStackException();
+      throw new EmptyCollectionException("Stack");
     }
-    return stack.getFirst();
+    return stack.get(stack.size() - 1);
   }
 
   /**
@@ -59,7 +60,7 @@ public class LinkedStack<T> implements StackADT<T> {
    * @return true if the stack is empty, false otherwise
    */
   public boolean isEmpty() {
-    return stack.isEmpty();
+    return (stack.size() == 0);
   }
 
   /**

@@ -1,3 +1,4 @@
+package jsjf;
 
 /**
  * QueueADT defines the interface to a queue collection.
@@ -25,7 +26,7 @@ public interface QueueADT<T> {
    * 
    * @return the first element in the queue
    */
-  public T first();
+  public T peek();
 
   /**
    * Returns true if this queue contains no elements.
